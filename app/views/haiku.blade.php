@@ -34,7 +34,7 @@
 			}
 
 			p.haiku {
-				font-size: 6vw;
+				font-size: 5vw;
 				padding-bottom: 0px;
 				line-height: 10px;
 			}
@@ -43,7 +43,7 @@
 				font-size: 2.6vw;
 				font-style: oblique;
 				padding-top: 5px;
-				line-height: 10px;
+				line-height: 3vw;
 				text-align: center;
 			}
 			td.voting {
@@ -51,23 +51,50 @@
 			}
 
 			div.upArrow input {
+				@if ($voted == 'up')
+				background:url({{ asset('images/up-arrow-lit.png') }}) no-repeat center;
+				@else
 				background:url({{ asset('images/up-arrow.png') }}) no-repeat center;
+				@endif				background-size: cover;
+				cursor:pointer;
+				text-align: center;
+				border: none;
+				width: 2vw;
+				height: 2vw;
+			}
+
+			div.upArrow:hover input {
+				background:url({{ asset('images/up-arrow-lit.png') }}) no-repeat center;
 				background-size: cover;
 				cursor:pointer;
 				text-align: center;
 				border: none;
-				width: 1.67vw;
-				height: 1.67vw;
+				width: 2vw;
+				height: 2vw;
 			}
 
 			div.downArrow input {
+				@if ($voted == 'down')
+				background:url({{ asset('images/down-arrow-lit.png') }}) no-repeat center;
+				@else
 				background:url({{ asset('images/down-arrow.png') }}) no-repeat center;
+				@endif
 				background-size: cover;
 				cursor:pointer;
 				text-align: center;
 				border: none;
-				width: 1.67vw;
-				height: 1.67vw;
+				width: 2vw;
+				height: 2vw;
+			}
+
+			div.downArrow:hover input {
+				background:url({{ asset('images/down-arrow-lit.png') }}) no-repeat center;
+				background-size: cover;
+				cursor:pointer;
+				text-align: center;
+				border: none;
+				width: 2vw;
+				height: 2vw;
 			}
 
 			input[type=submit].remove {
@@ -77,10 +104,6 @@
 				font-size: 1.5vw;
 			}
 
-
-			p.casename {
-				line-height: 3vw;
-			}
 
 		</style>
 		<meta name="description" content="The HTML5 Herald">
@@ -100,11 +123,15 @@
 			<p class="haiku">{{ $line1 }}<br /></p>
 			<p class="haiku">{{ $line2 }}<br /></p>
 			<p class="haiku">{{ $line3 }}</p>
-			<p class="casename">{{ $shortname }}</p><br />
+			<p class="casename">{{ $shortname }} ({{ $year }})</p><br />
 			</td>
 			<td class="voting">{{ Form::open(['route' => 'haiku.up']) }}{{ Form::hidden('id', $id) }}
 			<div class="upArrow">{{ Form::submit('', array('class' => 'arrow')) }}{{ Form::close() }}</div>
+			@if ($voted != 'none')
+			<img class="gavel" src="{{ asset('images/gavel-lit.png') }}">
+			@else
 			<img class="gavel" src="{{ asset('images/gavel.png') }}">
+			@endif
 			@if ($id != '31337')
 			<div class="downArrow">{{ Form::open(['route' => 'haiku.down']) }}{{ Form::hidden('id', $id) }}{{ Form::submit('', array('class' => 'arrow')) }}{{ Form::close() }}</div>
 			@endif
