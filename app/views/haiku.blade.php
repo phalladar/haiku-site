@@ -3,14 +3,18 @@
 <html lang="en">
 	<head>
 		<meta charset="utf-8">
-		<title>Stare Haikus</title>
+		<title>Stare Haikusis</title>
 		<!-- Bootstrap -->
 		<link href="{{asset('css/bootstrap.min.css')}}" rel="stylesheet">
+		<link href="{{asset('css/bootstrap-social.css')}}" rel="stylesheet">
+		<link href="{{asset('css/font-awesome.min.css')}}" rel="stylesheet">
+		<link href='http://fonts.googleapis.com/css?family=Lato' rel='stylesheet' type='text/css'>
+		
 		<style type="text/css">
 			html
 			{
-				width: 99%;
-				height: 100%;
+				width: 95%;
+				height: 95%;
 			}
 
 			img.gavel {
@@ -18,7 +22,6 @@
 				padding-bottom: 1.3vw;
 				text-align: center;
 				width: 5vw;
-				hwifhr: 5vw;
 			}
 
 			body {
@@ -27,7 +30,7 @@
 				text-align: center;
 				width: 99%;
 				top: 45%;
-				transform: translateY(-19%);
+				transform: translateY(-32%);
 			}
 
 			div {
@@ -36,11 +39,15 @@
 			}
 
 			p.haiku {
-				font-size: 5vw;
+				font-size: 4.6vw;
 				text-align: center;
 				padding-bottom: 0px;
 				line-height: 10px;
 				margin-bottom: 5vw;
+				font-family: 'Lato', sans-serif;
+				/*font-family: Arial, Helvetica, sans-serif;*/
+				/*font-family: Rockwell, “Courier Bold”, Courier, Georgia, Times, “Times New Roman”, serif;*/
+				/*font-family: Garamond, Baskerville, “Baskerville Old Face”, “Hoefler Text”, “Times New Roman”, serif;*/
 			}
 
 			p.casename {
@@ -49,6 +56,12 @@
 				padding-top: 5px;
 				line-height: 3vw;
 				text-align: center;
+				/*font-family: "Times New Roman", Times, serif;*/
+				/*font-family: “Century Gothic”, CenturyGothic, AppleGothic, sans-serif;*/
+				/*font-family: Rockwell, “Courier Bold”, Courier, Georgia, Times, “Times New Roman”, serif;*/
+				font-family: Garamond, Baskerville, “Baskerville Old Face”, “Hoefler Text”, “Times New Roman”, serif;
+
+
 			}
 			td.voting {
 				padding-left: 1.35vw;
@@ -112,48 +125,44 @@
 				border: 0px;
 			}
 
-			.container{ text-align: center; }
-
-			/* Button styles: */
-			i.fb,       span.fb{     	color: #3b5998; }
-			i.tw,       span.tw{     	color: #00aced; }
-			i.google,   span.google{ 	color: #dd4b39; }
-			i.linkin,   span.linkin{ 	color: #007bb6; }
-			i.vk,       span.vk{     	color: #45668e; }
-			i.pinterest,span.pinterest{ color: #cb2027; }
-			i.surfingbird{ max-height: 12px; min-width: 25%; }
-			i.surfingbird::before{ 
-			    content: url(http://bootstrap-ru.com/cdn/i/surf.png); 
-			    position: relative;
-			    left:0px;
-			    top: -7px;
-			    float: left;
+			.popover {
+				max-width: none;
+			    width: 500px;
+			    height: 55px;    
 			}
 
-			.google-plus-one{
-			   overflow: hidden;
-			   position: relative;
+			code, kbd, pre, samp {
+		 	   font-family: "Arial Black", Gadget, sans-serif;
 			}
 
-			.google-plus-one i{
-			   position: absolute;
-			   left: -4px;
-			   bottom: -5px;
+			pre.copyMe {
+				width: 285px;
 			}
 
-			.google-plus-one span{
-			   font-size: 16px; 
-			   font-weight: 900; 
-			   line-height: 10px;
-			   margin-left: 15px;
+			.form-horizontal .form-group {
+				margin-right: 0px;
+				margin-left: 0px;
+			}
+			.has-feedback {
+				position: relative;
+			}
+			.form-group {
+				margin-bottom: 0px;
+				padding-left: 0px;
 			}
 
-			.btn-sm.google-plus-one span{ font-size: 14px; }
-			.btn-sm.google-plus-one i{ bottom: -3px; }
-			.btn-lg.google-plus-one span{ font-size: 20px; margin-left: 18px; }
-			.btn-lg.google-plus-one i{ bottom: -5px; }
-			.btn-xs.google-plus-one span{ font-size: 12px;}
-			.btn-xs.google-plus-one i{ bottom: -7px; }
+			input, button, select, textarea {
+			font-family: "Times New Roman";
+			font-size: inherit;
+			line-height: inherit;
+			color: gray;
+			padding-left: 10px;
+			}
+
+/*			td {
+				border-style: solid;
+				border-width: 1px;
+			}*/
 
 		</style>
 
@@ -174,33 +183,68 @@
   <!-- Other JS plugins can be included here -->
 
 
-	<table align="center">
-		<tr>
-			<td>
-			<p class="haiku">{{ $line1 }}<br /></p>
-			<p class="haiku">{{ $line2 }}<br /></p>
-			<p class="haiku">{{ $line3 }}</p>
-			<p class="casename">{{ $shortname }} ({{ $year }})</p><br />
-			</td>
-			<td class="voting">{{ Form::open(['route' => 'haiku.up']) }}{{ Form::hidden('id', $id) }}
-			<div class="upArrow" align="center">{{ Form::submit('', array('class' => 'arrow')) }}{{ Form::close() }}</div>
-			@if ($voted != 'none')
-			<img class="gavel" src="{{ asset('images/gavel-lit.png') }}" align="center">
-			@else
-			<img class="gavel" src="{{ asset('images/gavel.png') }}" align="center">
-			@endif
-			@if ($id != '31337')
-			<div class="downArrow" align="center">{{ Form::open(['route' => 'haiku.down']) }}{{ Form::hidden('id', $id) }}{{ Form::submit('', array('class' => 'arrow')) }}{{ Form::close() }}</div>
-			@endif
-			</td>
-		</tr>
-		<tr><td></td>
-			<td>{{ Form::open(['route' => 'haiku.remove']) }}{{ Form::hidden('id', $id) }}{{ Form::submit('[x]', array('class' => 'remove')) }}{{ Form::close() }}
-			</td>
-			</tr>
-			<tr><td><button type="button" class="btn btn-default" data-container="body" data-toggle="popover" data-placement="right" data-content='"Vivamus sagittis lacus vel augue laoreet rutrum faucibus."' data-original-title="" title="">Popover on right</button></td></tr>
-
-	</table>
+<table align="center">
+  <tr>
+    <td>
+      <p class="haiku">
+        {{ $line1 }}<br />
+      </p>
+      <p class="haiku">
+        {{ $line2 }}<br />
+      </p>
+      <p class="haiku">
+        {{ $line3 }}
+      </p>
+    </td>
+    <td class="voting">
+      {{ Form::open(['route' =&gt; 'haiku.up']) }}{{
+      Form::hidden('id', $id) }}
+      <div class="upArrow" align="center">
+        {{ Form::submit('', array('class' =&gt; 'arrow')) }}{{
+        Form::close() }}
+      </div>@if ($voted != 'none') <img class="gavel" src=
+      "{{%20asset('images/gavel-lit.png')%20}}" align="center" />
+      @else <img class="gavel" src=
+      "{{%20asset('images/gavel.png')%20}}" align="center" />
+      @endif @if ($id != '31337')
+      <div class="downArrow" align="center">
+        {{ Form::open(['route' =&gt; 'haiku.down']) }}{{
+        Form::hidden('id', $id) }}{{ Form::submit('', array('class'
+        =&gt; 'arrow')) }}{{ Form::close() }}
+      </div>@endif
+    </td>
+  </tr>
+  <tr>
+    <td>
+      <p class="casename">
+        {{ $shortname }} ({{ $year }})
+      </p>
+    </td>
+    <td>
+      {{ Form::open(['route' =&gt; 'haiku.remove']) }}{{
+      Form::hidden('id', $id) }}{{ Form::submit('[x]',
+      array('class' =&gt; 'remove')) }}{{ Form::close() }}
+    </td>
+  </tr>
+  <tr>
+    <td>
+      <a href="#" id="popover" name="popover"><button type="button"
+      class="btn btn-default"><a href="#" id="popover" name=
+      "popover"></a><a href="#" id="popover" name="popover"></a>
+      <a href="#" id="popover" name="popover">Share</a>
+      <div id="popover-content" class="hide">
+        <form class="form-horizontal" role="form">
+          <div class="form-group has-feedback">
+            <input type="text" name="sometext" size="50" value=
+            "{{url('/haiku', $parameters = array(), $secure = null) . '/' . $id}}"
+            onclick='selectText(this);' /> <a class=
+            "btn btn-social-icon btn-twitter"></a>
+          </div>
+        </form>
+      </div></button></a>
+    </td>
+  </tr>
+</table>
 
 <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
@@ -208,17 +252,26 @@
 <script src="{{ asset('js/bootstrap.min.js') }}"></script>
 
 <script>
-$('[data-toggle="popover"]').popover();
-
-$('body').on('click', function (e) {
-    $('[data-toggle="popover"]').each(function () {
-        //the 'is' for buttons that trigger popups
-        //the 'has' for icons within a button that triggers a popup
-        if (!$(this).is(e.target) && $(this).has(e.target).length === 0 && $('.popover').has(e.target).length === 0) {
-            $(this).popover('hide');
-        }
-    });
+$('#popover').popover({ 
+    html : true,
+    title: function() {
+      return $("#popover-head").html();
+    },
+    content: function() {
+      return $("#popover-content").html();
+    }
 });
+
+$('#popover-dismiss').popover({
+  trigger: 'focus'
+});
+</script>
+<script language="JavaScript">
+  function selectText(textField) 
+  {
+    textField.focus();
+    textField.select();
+  }
 </script>
 	</body>
 </html>
