@@ -197,21 +197,21 @@
       </p>
     </td>
     <td class="voting">
-      {{ Form::open(['route' =&gt; 'haiku.up']) }}{{
-      Form::hidden('id', $id) }}
+      {{ Form::open(['route' => 'haiku.up']) }}{{ Form::hidden('id', $id) }}
       <div class="upArrow" align="center">
-        {{ Form::submit('', array('class' =&gt; 'arrow')) }}{{
-        Form::close() }}
-      </div>@if ($voted != 'none') <img class="gavel" src=
-      "{{%20asset('images/gavel-lit.png')%20}}" align="center" />
+        {{ Form::submit('', array('class' => 'arrow')) }}{{ Form::close() }}
+      </div>
+      @if ($voted != 'none') <img class="gavel" src=
+      "{{ asset('images/gavel-lit.png') }}" align="center" />
       @else <img class="gavel" src=
-      "{{%20asset('images/gavel.png')%20}}" align="center" />
-      @endif @if ($id != '31337')
+      "{{ asset('images/gavel.png') }}" align="center" />
+      @endif 
+      @if ($id != '31337')
       <div class="downArrow" align="center">
-        {{ Form::open(['route' =&gt; 'haiku.down']) }}{{
-        Form::hidden('id', $id) }}{{ Form::submit('', array('class'
-        =&gt; 'arrow')) }}{{ Form::close() }}
-      </div>@endif
+        {{ Form::open(['route' => 'haiku.down']) }}{{
+        Form::hidden('id', $id) }}{{ Form::submit('', array('class' => 'arrow')) }}{{ Form::close() }}
+      </div>
+      @endif
     </td>
   </tr>
   <tr>
@@ -221,9 +221,9 @@
       </p>
     </td>
     <td>
-      {{ Form::open(['route' =&gt; 'haiku.remove']) }}{{
+      {{ Form::open(['route' => 'haiku.remove']) }}{{
       Form::hidden('id', $id) }}{{ Form::submit('[x]',
-      array('class' =&gt; 'remove')) }}{{ Form::close() }}
+      array('class' => 'remove')) }}{{ Form::close() }}
     </td>
   </tr>
   <tr>
