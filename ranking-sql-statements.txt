@@ -1,0 +1,7 @@
+SELECT * FROM haiku WHERE score > (SELECT AVG(score) FROM haiku) + (SELECT STD(score) FROM haiku) # find greater than std dev
+
+SELECT * FROM haiku WHERE (SELECT AVG(score) FROM haiku) - (SELECT STD(score) FROM haiku) > score # find less than std dev
+
+SELECT * FROM haiku WHERE (score < (SELECT AVG(score) FROM haiku) + (SELECT STD(score) FROM haiku)) 
+AND ((SELECT AVG(score) FROM haiku) - (SELECT STD(score) FROM haiku) < score)
+# find everything within one standard deviation
