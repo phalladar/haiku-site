@@ -4,8 +4,8 @@
 	<head>
 		<meta charset="utf-8">
 		<title>Stare Haikus</title>
-		<link rel="stylesheet" href="{{asset('css/foundation.css')}}" />
-		<script src="{{asset('/js/vendor/modernizr.js')}}"></script>
+		<!-- Bootstrap -->
+		<link href="{{asset('css/bootstrap.min.css')}}" rel="stylesheet">
 		<style type="text/css">
 			html
 			{
@@ -112,11 +112,57 @@
 				border: 0px;
 			}
 
+			.container{ text-align: center; }
+
+			/* Button styles: */
+			i.fb,       span.fb{     	color: #3b5998; }
+			i.tw,       span.tw{     	color: #00aced; }
+			i.google,   span.google{ 	color: #dd4b39; }
+			i.linkin,   span.linkin{ 	color: #007bb6; }
+			i.vk,       span.vk{     	color: #45668e; }
+			i.pinterest,span.pinterest{ color: #cb2027; }
+			i.surfingbird{ max-height: 12px; min-width: 25%; }
+			i.surfingbird::before{ 
+			    content: url(http://bootstrap-ru.com/cdn/i/surf.png); 
+			    position: relative;
+			    left:0px;
+			    top: -7px;
+			    float: left;
+			}
+
+			.google-plus-one{
+			   overflow: hidden;
+			   position: relative;
+			}
+
+			.google-plus-one i{
+			   position: absolute;
+			   left: -4px;
+			   bottom: -5px;
+			}
+
+			.google-plus-one span{
+			   font-size: 16px; 
+			   font-weight: 900; 
+			   line-height: 10px;
+			   margin-left: 15px;
+			}
+
+			.btn-sm.google-plus-one span{ font-size: 14px; }
+			.btn-sm.google-plus-one i{ bottom: -3px; }
+			.btn-lg.google-plus-one span{ font-size: 20px; margin-left: 18px; }
+			.btn-lg.google-plus-one i{ bottom: -5px; }
+			.btn-xs.google-plus-one span{ font-size: 12px;}
+			.btn-xs.google-plus-one i{ bottom: -7px; }
+
 		</style>
 
-		<!--[if lt IE 9]>
-		<script src="http://html5shiv.googlecode.com/svn/trunk/html5.js"></script>
-		<![endif]-->
+    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+      <script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
+      <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+    <![endif]-->
 
 
 
@@ -148,28 +194,20 @@
 			@endif
 			</td>
 		</tr>
-		<tr>
-		<tr>
-			<td>
-			<span data-tooltip class="has-tip" data-options="show_on:large" title="Large Screen Sizes">show on</span>
-			</tr>
-			<tr>
+		<tr><td></td>
 			<td>{{ Form::open(['route' => 'haiku.remove']) }}{{ Form::hidden('id', $id) }}{{ Form::submit('[x]', array('class' => 'remove')) }}{{ Form::close() }}
 			</td>
-			<tr>
-			<td>
-						<a href="#" data-reveal-id="myModal">Click Me For A Modal</a> 
-			<div id="myModal" style="display: none" class="reveal-modal" data-reveal>Awesome. I have it.<p class="lead">Your couch. It is mine.</p> <p>I'm a cool paragraph that lives inside of an even cooler modal. Wins!</p> <a class="close-reveal-modal">&#215;</a> </div>	
-			</td>
-			<td></td>
-			<tr><td><button type="button" class="btn btn-default" data-container="body" data-toggle="popover" data-placement="right" data-content="Vivamus sagittis lacus vel augue laoreet rutrum faucibus." data-original-title="" title="">Popover on right</button></td></tr>
-		</tr>
+			</tr>
+			<tr><td><button type="button" class="btn btn-default" data-container="body" data-toggle="popover" data-placement="right" data-content='"Vivamus sagittis lacus vel augue laoreet rutrum faucibus."' data-original-title="" title="">Popover on right</button></td></tr>
 
 	</table>
 
-<script>
-$(document).foundation();
+<!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+<!-- Include all compiled plugins (below), or include individual files as needed -->
+<script src="{{ asset('js/bootstrap.min.js') }}"></script>
 
+<script>
 $('[data-toggle="popover"]').popover();
 
 $('body').on('click', function (e) {
