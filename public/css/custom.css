@@ -74,13 +74,7 @@
 		 	   font-family: "Arial Black", Gadget, sans-serif;
 			}
 
-			input, button, select, textarea {
-			font-family: "Times New Roman";
-			font-size: inherit;
-			line-height: inherit;
-			color: gray;
-			padding-left: 10px;
-			}
+
 
 /*			td {
 				border-style: solid;

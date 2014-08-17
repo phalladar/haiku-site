@@ -74,7 +74,7 @@
 
 			.popover {
 				max-width: none;
-			    width: 500px;
+			    width: 430px;
 			    height: 55px;    
 			}
 
@@ -99,12 +99,10 @@
 
 	</head>
 	<body>
-		<script src="{{ asset('js/vendor/jquery.js') }}"></script>
-		<script src="{{ asset('js/vendor/fastclick.js') }}"></script>
-		<script src="{{ asset('js/foundation.min.js') }}"></script>
+	<script src="{{ asset('js/vendor/jquery.js') }}"></script>
+	<script src="{{ asset('js/vendor/fastclick.js') }}"></script>
+	<script src="{{ asset('js/foundation.min.js') }}"></script>
   <!-- Other JS plugins can be included here -->
-
-
 <table align="center">
   <tr>
     <td>
@@ -156,11 +154,10 @@
 	</a>
 		<div id="popover-content" class="hide">
 			<form class="form-horizontal" role="form">
-				<div class="form-group has-feedback">
-					<input type="text" name="sometext" size="40" value="{{url('/haiku', $parameters = array(), $secure = null) . '/' . $id}}" onclick='selectText(this);' />
-					<a class="btn btn-social-icon btn-twitter"><i class="fa fa-twitter"></i></a>
-					<a class="btn btn-social-icon btn-google-plus"><i class="fa fa-google-plus"></i></a>
-					<a class="btn btn-social-icon btn-facebook"><i class="fa fa-facebook"></i></a>
+				<div class="form-group has-feedback" align="center">
+					<input type="text" name="sometext" size="40" value="{{url('/', $parameters = array(), $secure = null) . '/' . $id}}" onclick='selectText(this);' />
+					<a target="_blank" class="btn btn-social-icon btn-twitter" href="https://twitter.com/share?url=google.com&text={{$line1 . ' / ' . $line2 . ' / ' . $line3}} (via @starehaikusis — {{url('/', $parameters = array(), $secure = null) . '/' . $id}})"><i class="fa fa-twitter"></i></a>
+					<a target="_blank" href="mailto: ?subject=A Haiku For You&body=Hey there.%0A%0AI thought you'd enjoy this haiku from Stare Haikusis:%0A%0A{{$line1}}%0A{{$line2}}%0A{{$line3}}%0A— {{ $shortname }} ({{ $year }})%0A%0ASee more at {{url('/', $parameters = array(), $secure = null)}}" class="btn btn-social-icon btn-google-plus"><i class="fa fa-envelope"></i></a>
 				</div>
 			</form>
 		</div></p>

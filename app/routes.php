@@ -13,12 +13,18 @@
 
 Route::get('/', function()
 {
-	$name = 'Joshua';
-	return View::make('hello')->with('name', $name);
+	$result = DB::table('haiku')->orderBy(DB::raw('RAND()'))->where('reviewed', '1')->first();
+	if ($result->id == '31337')
+	{
+		$result = DB::table('haiku')->orderBy(DB::raw('RAND()'))->first();
+	}
+
+	$year = date("Y", strtotime($result->opinion_date));
+	$voted = Session::get($result->id, 'none');
+	return View::make('haiku')->with('line1', $result->line1)->with('line2', $result->line2)->with('line3', $result->line3)->with('shortname', $result->shortname)->with('id', $result->id)->with('year', $year)->with('voted', $voted);
 });
 
-
-Route::get('/haiku', function()
+Route::get('/', function()
 {
 	$result = DB::table('haiku')->orderBy(DB::raw('RAND()'))->where('reviewed', '1')->first();
 	if ($result->id == '31337')
@@ -29,18 +35,9 @@ Route::get('/haiku', function()
 	$year = date("Y", strtotime($result->opinion_date));
 	$voted = Session::get($result->id, 'none');
 	return View::make('haiku')->with('line1', $result->line1)->with('line2', $result->line2)->with('line3', $result->line3)->with('shortname', $result->shortname)->with('id', $result->id)->with('year', $year)->with('voted', $voted);
-
 });
 
-Route::get('/test', function(){
-	$haiku = Haiku::find(13892);
-	$haiku->score = $haiku->score + 1;
-	$haiku->save();
-	var_dump($haiku->score);
-
-});
-
-Route::get('/haiku/{id}', function($id){
+Route::get('/{id}', function($id){
 	
 	$result = Haiku::find($id);
 	#dd($result);
@@ -61,49 +58,49 @@ Route::get('/haiku/{id}', function($id){
 
 });
 
-Route::post('/haiku/up', array('as' => 'haiku.up', function()
+Route::post('/up', array('as' => 'haiku.up', function()
 {
 
 	if (Session::get(Input::get('id')) == 'up') {
-		return Redirect::to('/haiku');
+		return Redirect::to('/');
 	}
 	elseif (Session::get(Input::get('id')) == 'down') {
 		Session::put(Input::get('id'), 'up');
 		Haiku::find(Input::get('id'))->increment('score');
 		Haiku::find(Input::get('id'))->increment('score');
-	    return Redirect::to('/haiku');
+	    return Redirect::to('/');
 	}
 	else {
 		Session::put(Input::get('id'), 'up');
 		Haiku::find(Input::get('id'))->increment('score');
-	    return Redirect::to('/haiku');
+	    return Redirect::to('/');
 	}
 
 }));
 
-Route::post('/haiku/down', array('as' => 'haiku.down', function()
+Route::post('/down', array('as' => 'haiku.down', function()
 {
 	if (Session::get(Input::get('id')) == 'down') {
-		return Redirect::to('/haiku');
+		return Redirect::to('/');
 	}
 	elseif (Session::get(Input::get('id')) == 'up') {
 		Session::put(Input::get('id'), 'down');
 		Haiku::find(Input::get('id'))->decrement('score');
 		Haiku::find(Input::get('id'))->decrement('score');
-	    return Redirect::to('/haiku');
+	    return Redirect::to('/');
 	}
 	else {
 		Session::put(Input::get('id'), 'down');
 		Haiku::find(Input::get('id'))->decrement('score');
-	    return Redirect::to('/haiku');
+	    return Redirect::to('/');
 	}
 
 }));
 
-Route::post('/haiku/remove', array('as' => 'haiku.remove', function()
+Route::post('/remove', array('as' => 'haiku.remove', function()
 {
 	Haiku::find(Input::get('id'))->delete();
-	return Redirect::to('/haiku');
+	return Redirect::to('/');
 }));
 
 Route::get('/test', function()
