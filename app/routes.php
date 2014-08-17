@@ -34,9 +34,6 @@ Route::get('/', function()
 {
 	$result = DB::table('haiku')->orderBy(DB::raw('RAND()'))->where('reviewed', '1')->first();
 	if ($result->id == '31337')
-	{
-		$result = DB::table('haiku')->orderBy(DB::raw('RAND()'))->first();
-	}
 
 	$year = date("Y", strtotime($result->opinion_date));
 	$voted = Session::get($result->id, 'none');
@@ -46,10 +43,7 @@ Route::get('/', function()
 Route::get('/', function()
 {
 	$result = DB::table('haiku')->orderBy(DB::raw('RAND()'))->where('reviewed', '1')->first();
-	if ($result->id == '31337')
-	{
-		$result = DB::table('haiku')->orderBy(DB::raw('RAND()'))->first();
-	}
+
 
 	$year = date("Y", strtotime($result->opinion_date));
 	$voted = Session::get($result->id, 'none');
@@ -134,6 +128,19 @@ Route::post('/{id}/edit', array('as' => 'haiku.edit', function()
 						'shortname' => Input::get('shortname')));
 
 	return Redirect::to(url('/', $parameters = array(), $secure = null) . '/' . Input::get('id'));
+
+}));
+
+Route::post('/flag', array('as' => 'haiku.flag', function()
+{
+	$theFlag = Input::get('id') . "-flag";
+	if (Session::get($theFlag) == 'yes') {
+		return Redirect::to('/');
+	} else {
+		Session::put($theFlag, 'yes');
+		Haiku::find(Input::get('id'))->increment('flagged');
+	    return Redirect::to('/');
+	}
 
 }));
 

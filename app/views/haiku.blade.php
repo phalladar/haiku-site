@@ -86,6 +86,10 @@
 			padding-left: 10px;
 			}
 
+			.glyphiconColor {
+				color: red;
+			}
+
 		</style>
 
     <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
@@ -94,8 +98,11 @@
       <script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
       <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
     <![endif]-->
-
-
+@if (Session::get($id . "-flag") == 'yes') 
+<?php $buttonClass = 'btn btn-danger'; ?>
+@else
+<?php $buttonClass = 'btn btn-default'; ?>
+@endif
 
 	</head>
 	<body>
@@ -225,9 +232,12 @@
 	Logout <span class="glyphicon glyphicon-remove"></span></button></a>
   </td>
   @else
-    <td>  
-  	<a href="{{url('/', $parameters = array(), $secure = null) . '/logout'}}" id="logout"><button type="button" class="btn btn-default btn">
-	Flag this case <span class="glyphicon glyphicon-flag"></span></button></a>
+    <td>
+     {{ Form::open(['route' => 'haiku.flag']) }}{{ Form::hidden('id', $id) }}
+        {{ Form::button('<span class="glyphicon glyphicon-flag glyphiconColor"></span>&nbsp;&nbsp;Flag case', 
+        	array('type' => 'submit', 
+        		'class' => $buttonClass)) }}
+        		{{ Form::close() }}
   </td>
   @endif
 </tr></table>
