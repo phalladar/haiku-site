@@ -5,67 +5,13 @@
 		<meta charset="utf-8">
 		<title>Stare Haikusis</title>
 		<!-- Bootstrap -->
+		<link href="{{asset('css/custom.css')}}" rel="stylesheet">
 		<link href="{{asset('css/bootstrap.min.css')}}" rel="stylesheet">
 		<link href="{{asset('css/bootstrap-social.css')}}" rel="stylesheet">
 		<link href="{{asset('css/font-awesome.min.css')}}" rel="stylesheet">
 		<link href='http://fonts.googleapis.com/css?family=Lato' rel='stylesheet' type='text/css'>
 		
 		<style type="text/css">
-			html
-			{
-				width: 95%;
-				height: 95%;
-			}
-
-			img.gavel {
-				padding-top: 1.3vw;
-				padding-bottom: 1.3vw;
-				text-align: center;
-				width: 5vw;
-			}
-
-			body {
-
-				position: relative;
-				text-align: center;
-				width: 99%;
-				top: 45%;
-				transform: translateY(-32%);
-			}
-
-			div {
-				padding-top: 0px;
-				padding-bottom: 0px;
-			}
-
-			p.haiku {
-				font-size: 4.6vw;
-				text-align: center;
-				padding-bottom: 0px;
-				line-height: 10px;
-				margin-bottom: 5vw;
-				font-family: 'Lato', sans-serif;
-				/*font-family: Arial, Helvetica, sans-serif;*/
-				/*font-family: Rockwell, “Courier Bold”, Courier, Georgia, Times, “Times New Roman”, serif;*/
-				/*font-family: Garamond, Baskerville, “Baskerville Old Face”, “Hoefler Text”, “Times New Roman”, serif;*/
-			}
-
-			p.casename {
-				font-size: 2.6vw;
-				font-style: oblique;
-				padding-top: 5px;
-				line-height: 3vw;
-				text-align: center;
-				/*font-family: "Times New Roman", Times, serif;*/
-				/*font-family: “Century Gothic”, CenturyGothic, AppleGothic, sans-serif;*/
-				/*font-family: Rockwell, “Courier Bold”, Courier, Georgia, Times, “Times New Roman”, serif;*/
-				font-family: Garamond, Baskerville, “Baskerville Old Face”, “Hoefler Text”, “Times New Roman”, serif;
-
-
-			}
-			td.voting {
-				padding-left: 1.35vw;
-			}
 
 			div.upArrow input {
 				@if ($voted == 'up')
@@ -114,31 +60,6 @@
 				height: 2vw;
 			}
 
-			input[type=submit].remove {
-				border:0 none;
-				cursor:pointer;
-				font-style: inherit;
-				font-size: 1.5vw;
-			}
-
-			table {
-				border: 0px;
-			}
-
-			.popover {
-				max-width: none;
-			    width: 500px;
-			    height: 55px;    
-			}
-
-			code, kbd, pre, samp {
-		 	   font-family: "Arial Black", Gadget, sans-serif;
-			}
-
-			pre.copyMe {
-				width: 285px;
-			}
-
 			.form-horizontal .form-group {
 				margin-right: 0px;
 				margin-left: 0px;
@@ -151,18 +72,11 @@
 				padding-left: 0px;
 			}
 
-			input, button, select, textarea {
-			font-family: "Times New Roman";
-			font-size: inherit;
-			line-height: inherit;
-			color: gray;
-			padding-left: 10px;
+			.popover {
+				max-width: none;
+			    width: 500px;
+			    height: 55px;    
 			}
-
-/*			td {
-				border-style: solid;
-				border-width: 1px;
-			}*/
 
 		</style>
 
@@ -227,21 +141,21 @@
     </td>
   </tr>
   <tr>
-    <td>
-      <a href="#" id="popover" name="popover"><button type="button"
-      class="btn btn-default"><a href="#" id="popover" name=
-      "popover"></a><a href="#" id="popover" name="popover"></a>
-      <a href="#" id="popover" name="popover">Share</a>
-      <div id="popover-content" class="hide">
-        <form class="form-horizontal" role="form">
-          <div class="form-group has-feedback">
-            <input type="text" name="sometext" size="50" value=
-            "{{url('/haiku', $parameters = array(), $secure = null) . '/' . $id}}"
-            onclick='selectText(this);' /> <a class=
-            "btn btn-social-icon btn-twitter"></a>
-          </div>
-        </form>
-      </div></button></a>
+    <td class="shareButton">
+    <p align="left"><a href="#" id="popover"><button type="button" class="btn btn-default btn">
+	<span class="glyphicon glyphicon-share"></span> Share
+	</button>
+	</a>
+		<div id="popover-content" class="hide">
+			<form class="form-horizontal" role="form">
+				<div class="form-group has-feedback">
+					<input type="text" name="sometext" size="50" value="{{url('/haiku', $parameters = array(), $secure = null) . '/' . $id}}" onclick='selectText(this);' />
+					<a class="btn btn-social-icon btn-twitter">
+					<i class="fa fa-twitter"></i>
+					</a>
+				</div>
+			</form>
+		</div></p>
     </td>
   </tr>
 </table>
