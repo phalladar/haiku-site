@@ -103,7 +103,22 @@ Route::post('/remove', array('as' => 'haiku.remove', function()
 	return Redirect::to('/');
 }));
 
-Route::get('/test', function()
+Route::post('/{id}/edit', array('as' => 'haiku.edit', function()
+{
+
+	//return Input::get('line1');
+	DB::table('haiku')
+		->where('id', Input::get('id'))
+		->update(array('line1' => Input::get('line1'),
+						'line2' => Input::get('line2'),
+						'line3' => Input::get('line3'),
+						'shortname' => Input::get('shortname')));
+
+	return Redirect::to(url('/', $parameters = array(), $secure = null) . '/' . Input::get('id'));
+
+}));
+
+/*Route::get('/test', function()
 {
 
 	function average($arr)
@@ -136,4 +151,4 @@ Route::get('/test', function()
 	$variance = variance($randomNumbers);
 	return View::make('hello')->with('name', $mean);
 
-});
+});*/

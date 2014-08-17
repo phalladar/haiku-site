@@ -141,9 +141,61 @@
       </p>
     </td>
     <td>
-      {{ Form::open(['route' => 'haiku.remove']) }}{{
-      Form::hidden('id', $id) }}{{ Form::submit('[x]',
-      array('class' => 'remove')) }}{{ Form::close() }}
+    <button type="button" class="btn btn-primary btn edit_button" data-toggle="modal" data-target="#myModal" data-id="{{ $id }}">Edit</button>
+<!-- Modal for Edit button -->
+<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria- labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                 <h4 class="modal-title" id="myModalLabel">Edit Skill</h4>
+
+            </div>
+            <form method="post" action="{{url('/', $parameters = array(), $secure = null) . '/' . $id . '/edit'}}">
+                <div class="modal-body">
+					  <div class="form-group">
+					    {{ Form::hidden('id', $id) }}
+					    <label for="editLine1" class="col-sm-2 control-label">Line 1</label>
+					    <div class="col-sm-10">
+					      <input name="line1" type="text" class="form-control" id="editLine1" value="{{{ $line1 }}}"><br />
+					    </div>
+					  </div>
+					  <div class="form-group">
+					    <label for="editLine2" class="col-sm-2 control-label">Line 2</label>
+					    <div class="col-sm-10">
+					      <input name="line2" type="text" class="form-control" id="editLine2" value="{{{ $line2 }}}"><br />
+					    </div>
+					  </div>
+					  <div class="form-group">
+					    <label for="editLine3" class="col-sm-2 control-label">Line 3</label>
+					    <div class="col-sm-10">
+					      <input name="line3" type="text" class="form-control" id="editLine3" value="{{{ $line3 }}}"><br />
+					    </div>
+					  </div>
+					  <div class="form-group">
+					    <label for="editShortname" class="col-sm-2 control-label">Shortname</label>
+					    <div class="col-sm-10">
+					    <table>
+					    <tr><td width="75%" border="1px" padding-right="10px" padding-left="10px">
+					      <input name="shortname" type="text" class="form-control" id="editShortname" value="{{{ $shortname }}}"><br /></td>
+					    <td><button id="caseButton" type="button" class="btn btn-default-sm" onclick="upperMe();">Change Case</button></td></tr>
+					      </table>
+					    </div>
+					  </div>
+
+                    </div>
+
+                    <div class="modal-footer" align="center">
+                        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                        <button type="submit" class="btn btn-primary">Save changes</button>
+                    </div>
+            </form>
+            </div>
+        </div>
+    </div>
+    </td>
+    <td>
+      {{ Form::open(['route' => 'haiku.remove']) }}{{ Form::hidden('id', $id) }}{{ Form::submit('[x]', array('class' => 'remove')) }}{{ Form::close() }}
     </td>
   </tr>
   <tr>
@@ -181,7 +233,7 @@
         <p align="left" class="modal-body">The vast majority of the difficult code that made this site possible was written by <a href="http://mrfeinberg.com/" target="_blank">Jonathan Feinberg</a>. <a href="http://www.fastcase.com" target="_blank">Fastcase</a> also provided me with the corpus of supreme court cases since the inception of the Court (and will in the future be creating an API to allow me to generate open access links to all the opinions referenced on this site).</p>
         <p align="left" class="modal-body">Because this application was developed programatically, there will be errors. The voting process is intended to correct those errors and in the future I will create a reporting feature but for now please feel free to <a href="mailto:legalgeekery@gmail.com">reach out to me</a> for questions or comments.</p>
 
-        <p align="center">Hotkeys: <kbd><span class="glyphicon glyphicon-arrow-up"></span></kbd> upvote | <kbd><span class="glyphicon glyphicon-arrow-down"></span></kbd> downvote.</p>
+        <p align="center">Hotkeys: <kbd><span class="glyphicon glyphicon-arrow-up"></span></kbd> upvote | <kbd><span class="glyphicon glyphicon-arrow-down"></span></kbd> downvote.</p><br />
         <h3>About Joshua Auriemma</h3>
         <p align="left" class="modal-body">I'm an attorney currently running the outreach department at Fastcase. I write geeky legal-type stuff for my blog, <a href="http://www.legalgeekery.com" target="_blank">Legal Geekery</a>, and occasionally for TechnoLawyer.</p>
         <p align="left" class="modal-body">My background is in physics, math, and human-computer interaction. I'm into data visualization, legal informatics, data analysis, and access to justice.</p>
@@ -237,5 +289,22 @@ $("body").keyup(function(event){
     }
 });
 </script>
+<script type="text/javascript"> 
+String.prototype.toTitleCase = function(n) {
+   var s = this;
+   if (1 !== n) s = s.toLowerCase();
+   return s.replace(/\b[a-z]/g,function(f){return f.toUpperCase()});
+}
+
+String.prototype.fixVdot = function(n) {
+	var s = this;
+	return s.replace("V.", "v.");
+}
+
+function upperMe() { 
+    document.getElementById("editShortname").value = document.getElementById("editShortname").value.toTitleCase().fixVdot(); 
+} 
+
+</script> 
 	</body>
 </html>
