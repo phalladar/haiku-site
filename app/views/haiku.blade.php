@@ -147,8 +147,11 @@
     </td>
   </tr>
   <tr>
-    <td class="shareButton">
-    <p align="left"><a href="#" id="popover"><button type="button" class="btn btn-default btn" data-toggle="popover">
+  	<td class="shareButton">
+		<p align="left"><button type="button" class="btn btn-default btn" data-toggle="modal" data-target="#myModal">
+		<span class="glyphicon glyphicon-info-sign"></span>
+	</button>
+	<a href="#" id="popover"><button type="button" class="btn btn-default btn" data-toggle="popover">
 	<span class="glyphicon glyphicon-share"></span> Share
 	</button>
 	</a>
@@ -164,6 +167,31 @@
     </td>
   </tr>
 </table>
+
+<!-- Large hidden about modal -->
+<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+        <h4 class="modal-title" id="myModalLabel">About Stare Haikusis</h4>
+      </div>
+      <div class="modal-body">
+        <h3>About the Site</h3>
+        <p align="left" class="modal-body">When Stare Haikusis launched it was populated with approximately 9800 haikus programatically identified. These haikus were [presumably] inadvertently created by courts when writing their opinions.</p>
+        <p align="left" class="modal-body">The vast majority of the difficult code that made this site possible was written by <a href="http://mrfeinberg.com/" target="_blank">Jonathan Feinberg</a>. <a href="http://www.fastcase.com" target="_blank">Fastcase</a> also provided me with the corpus of supreme court cases since the inception of the Court (and will in the future be creating an API to allow me to generate open access links to all the opinions referenced on this site).</p>
+        <p align="left" class="modal-body">Because this application was developed programatically, there will be errors. The voting process is intended to correct those errors and in the future I will create a reporting feature but for now please feel free to <a href="mailto:legalgeekery@gmail.com">reach out to me</a> for questions or comments.
+        <h3>About Joshua Auriemma</h3>
+        <p align="left" class="modal-body">I'm an attorney currently running the outreach department at Fastcase. I write geeky legal-type stuff for my blog, <a href="http://www.legalgeekery.com" target="_blank">Legal Geekery</a>, and occasionally for TechnoLawyer.</p>
+        <p align="left" class="modal-body">My background is in physics, math, and human-computer interaction. I'm into data visualization, legal informatics, data analysis, and access to justice.</p>
+        <p align="left" class="modal-body">Want to stay in touch? Consider <a href="https://www.twitter.com/legalgeekery" target="_blank">adding me on twitter</a>.</p>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+      </div>
+    </div>
+  </div>
+</div>
 
 <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
