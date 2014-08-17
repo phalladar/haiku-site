@@ -3,7 +3,7 @@
 <html lang="en">
 	<head>
 		<meta charset="utf-8">
-		<title>Stare Haikusis</title>
+		<title>Stare Haikusis | {{ $line1 . '. . . .'}}</title>
 		<!-- Bootstrap -->
 		<link href="{{asset('css/custom.css')}}" rel="stylesheet">
 		<link href="{{asset('css/bootstrap.min.css')}}" rel="stylesheet">
@@ -78,6 +78,14 @@
 			    height: 55px;    
 			}
 
+			input, button, select, textarea {
+			font-family: "Times New Roman";
+			font-size: inherit;
+			line-height: inherit;
+			color: gray;
+			padding-left: 10px;
+			}
+
 		</style>
 
     <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
@@ -142,17 +150,17 @@
   </tr>
   <tr>
     <td class="shareButton">
-    <p align="left"><a href="#" id="popover"><button type="button" class="btn btn-default btn">
+    <p align="left"><a href="#" id="popover"><button type="button" class="btn btn-default btn" data-toggle="popover">
 	<span class="glyphicon glyphicon-share"></span> Share
 	</button>
 	</a>
 		<div id="popover-content" class="hide">
 			<form class="form-horizontal" role="form">
 				<div class="form-group has-feedback">
-					<input type="text" name="sometext" size="50" value="{{url('/haiku', $parameters = array(), $secure = null) . '/' . $id}}" onclick='selectText(this);' />
-					<a class="btn btn-social-icon btn-twitter">
-					<i class="fa fa-twitter"></i>
-					</a>
+					<input type="text" name="sometext" size="40" value="{{url('/haiku', $parameters = array(), $secure = null) . '/' . $id}}" onclick='selectText(this);' />
+					<a class="btn btn-social-icon btn-twitter"><i class="fa fa-twitter"></i></a>
+					<a class="btn btn-social-icon btn-google-plus"><i class="fa fa-google-plus"></i></a>
+					<a class="btn btn-social-icon btn-facebook"><i class="fa fa-facebook"></i></a>
 				</div>
 			</form>
 		</div></p>
@@ -166,18 +174,21 @@
 <script src="{{ asset('js/bootstrap.min.js') }}"></script>
 
 <script>
-$('#popover').popover({ 
-    html : true,
-    title: function() {
-      return $("#popover-head").html();
-    },
-    content: function() {
-      return $("#popover-content").html();
+$('[data-toggle="popover"]').popover({
+    html: true,
+    content: function () {
+        return $("#popover-content").html();
     }
 });
 
-$('#popover-dismiss').popover({
-  trigger: 'focus'
+$('body').on('click', function (e) {
+    $('[data-toggle="popover"]').each(function () {
+        //the 'is' for buttons that trigger popups
+        //the 'has' for icons within a button that triggers a popup
+        if (!$(this).is(e.target) && $(this).has(e.target).length === 0 && $('.popover').has(e.target).length === 0) {
+            $(this).popover('hide');
+        }
+    });
 });
 </script>
 <script language="JavaScript">
@@ -187,5 +198,6 @@ $('#popover-dismiss').popover({
     textField.select();
   }
 </script>
+
 	</body>
 </html>

@@ -58,7 +58,7 @@
 				padding-left: 1.35vw;
 			}
 
-						input[type=submit].remove {
+			input[type=submit].remove {
 				border:0 none;
 				cursor:pointer;
 				font-style: inherit;
