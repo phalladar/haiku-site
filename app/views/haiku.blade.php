@@ -110,7 +110,7 @@
         {{ $line1 }}<br />
       </p>
       <p class="haiku">
-        {{ $line2 }}<br />
+        {{ '&nbsp;' . $line2 . '&nbsp;' }}<br />
       </p>
       <p class="haiku">
         {{ $line3 }}
@@ -119,7 +119,7 @@
     <td class="voting">
       {{ Form::open(['route' => 'haiku.up']) }}{{ Form::hidden('id', $id) }}
       <div class="upArrow" align="center">
-        {{ Form::submit('', array('class' => 'arrow')) }}{{ Form::close() }}
+        {{ Form::submit('', array('id' => 'up_arrow', 'class' => 'arrow')) }}{{ Form::close() }}
       </div>
       @if ($voted != 'none') <img class="gavel" src=
       "{{ asset('images/gavel-lit.png') }}" align="center" />
@@ -129,7 +129,7 @@
       @if ($id != '31337')
       <div class="downArrow" align="center">
         {{ Form::open(['route' => 'haiku.down']) }}{{
-        Form::hidden('id', $id) }}{{ Form::submit('', array('class' => 'arrow')) }}{{ Form::close() }}
+        Form::hidden('id', $id) }}{{ Form::submit('', array('id' => 'down_arrow', 'class' => 'arrow')) }}{{ Form::close() }}
       </div>
       @endif
     </td>
@@ -174,13 +174,14 @@
     <div class="modal-content">
       <div class="modal-header">
         <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
-        <h4 class="modal-title" id="myModalLabel">About Stare Haikusis</h4>
       </div>
       <div class="modal-body">
         <h3>About the Site</h3>
         <p align="left" class="modal-body">When Stare Haikusis launched it was populated with approximately 9800 haikus programatically identified. These haikus were [presumably] inadvertently created by courts when writing their opinions.</p>
         <p align="left" class="modal-body">The vast majority of the difficult code that made this site possible was written by <a href="http://mrfeinberg.com/" target="_blank">Jonathan Feinberg</a>. <a href="http://www.fastcase.com" target="_blank">Fastcase</a> also provided me with the corpus of supreme court cases since the inception of the Court (and will in the future be creating an API to allow me to generate open access links to all the opinions referenced on this site).</p>
-        <p align="left" class="modal-body">Because this application was developed programatically, there will be errors. The voting process is intended to correct those errors and in the future I will create a reporting feature but for now please feel free to <a href="mailto:legalgeekery@gmail.com">reach out to me</a> for questions or comments.
+        <p align="left" class="modal-body">Because this application was developed programatically, there will be errors. The voting process is intended to correct those errors and in the future I will create a reporting feature but for now please feel free to <a href="mailto:legalgeekery@gmail.com">reach out to me</a> for questions or comments.</p>
+
+        <p align="center">Hotkeys: <kbd><span class="glyphicon glyphicon-arrow-up"></span></kbd> upvote | <kbd><span class="glyphicon glyphicon-arrow-down"></span></kbd> downvote.</p>
         <h3>About Joshua Auriemma</h3>
         <p align="left" class="modal-body">I'm an attorney currently running the outreach department at Fastcase. I write geeky legal-type stuff for my blog, <a href="http://www.legalgeekery.com" target="_blank">Legal Geekery</a>, and occasionally for TechnoLawyer.</p>
         <p align="left" class="modal-body">My background is in physics, math, and human-computer interaction. I'm into data visualization, legal informatics, data analysis, and access to justice.</p>
@@ -223,6 +224,18 @@ $('body').on('click', function (e) {
     textField.select();
   }
 </script>
+<script>
+$("body").keyup(function(event){
+    if(event.keyCode == 38){
+        document.forms[0].submit();
+    }
+});
 
+$("body").keyup(function(event){
+    if(event.keyCode == 40){
+        document.forms[1].submit();
+    }
+});
+</script>
 	</body>
 </html>
