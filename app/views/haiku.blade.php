@@ -141,6 +141,7 @@
       </p>
     </td>
     <td>
+    @if (Auth::check())
     <button type="button" class="btn btn-primary btn edit_button" data-toggle="modal" data-target="#myModal" data-id="{{ $id }}">Edit</button>
 <!-- Modal for Edit button -->
 <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria- labelledby="myModalLabel" aria-hidden="true">
@@ -198,6 +199,7 @@
       {{ Form::open(['route' => 'haiku.remove']) }}{{ Form::hidden('id', $id) }}{{ Form::submit('[x]', array('class' => 'remove')) }}{{ Form::close() }}
     </td>
   </tr>
+  @endif
   <tr>
   	<td class="shareButton">
 		<p align="left"><button type="button" class="btn btn-default btn" data-toggle="modal" data-target="#myModal">
@@ -217,8 +219,18 @@
 			</form>
 		</div></p>
     </td>
-  </tr>
-</table>
+  @if (Auth::check())
+  <td>  
+  	<a href="{{url('/', $parameters = array(), $secure = null) . '/logout'}}" id="logout"><button type="button" class="btn btn-default btn">
+	Logout <span class="glyphicon glyphicon-remove"></span></button></a>
+  </td>
+  @else
+    <td>  
+  	<a href="{{url('/', $parameters = array(), $secure = null) . '/logout'}}" id="logout"><button type="button" class="btn btn-default btn">
+	Flag this case <span class="glyphicon glyphicon-flag"></span></button></a>
+  </td>
+  @endif
+</tr></table>
 
 <!-- Large hidden about modal -->
 <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">

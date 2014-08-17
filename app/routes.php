@@ -11,6 +11,25 @@
 |
 */
 
+/*Route::get('/makeuser', function()
+{
+
+	User::create([
+		'username' => 'legalgeekery',
+		'email' => 'legalgeekery@gmail.com',
+		'password' => Hash::make('fg@84yhgHJH$%')
+
+		]);
+
+	Return 'Done creating username.';
+
+});*/
+
+Route::get('h-login', 'SessionsController@create');
+Route::get('logout', 'SessionsController@destroy');
+
+Route::resource('sessions', 'SessionsController');
+
 Route::get('/', function()
 {
 	$result = DB::table('haiku')->orderBy(DB::raw('RAND()'))->where('reviewed', '1')->first();
@@ -152,3 +171,5 @@ Route::post('/{id}/edit', array('as' => 'haiku.edit', function()
 	return View::make('hello')->with('name', $mean);
 
 });*/
+
+
