@@ -21,6 +21,8 @@
 				text-align: center;
 				width: 99%;
 				top: 22%;
+				font-size: 4.6vw;
+
 			}
 
 			div {
@@ -28,7 +30,7 @@
 				padding-bottom: 0px;
 			}
 
-			p.haiku {
+			div.haiku {
 				font-size: 4.6vw;
 				text-align: center;
 				padding-bottom: 0px;
@@ -40,7 +42,7 @@
 				/*font-family: Garamond, Baskerville, “Baskerville Old Face”, “Hoefler Text”, “Times New Roman”, serif;*/
 			}
 
-			p.casename {
+			div.casename {
 				font-size: 2.6vw;
 				font-style: oblique;
 				padding-top: 5px;
@@ -74,6 +76,7 @@
 			table {
 				border: 0px;
 				max-width: 90%;
+				margin-top: 40px;
 			}
 
 			code, kbd, pre, samp {

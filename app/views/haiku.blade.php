@@ -119,15 +119,15 @@
 <table align="center">
   <tr>
     <td>
-      <p class="haiku">
+      <div class="haiku">
         {{ $line1 }}<br />
-      </p>
-      <p class="haiku">
+      </div>
+      <div class="haiku">
         {{ '&nbsp;' . $line2 . '&nbsp;' }}<br />
-      </p>
-      <p class="haiku">
+      </div>
+      <div class="haiku">
         {{ $line3 }}
-      </p>
+      </div>
     </td>
     <td class="voting">
       {{ Form::open(['route' => 'haiku.up']) }}{{ Form::hidden('id', $id) }}
@@ -149,9 +149,9 @@
   </tr>
   <tr>
     <td>
-      <p class="casename">
+      <div class="casename">
         {{ $shortname }} ({{ $year }})
-      </p>
+      </div>
     </td>
     <td>
     @if (Auth::check())
