@@ -3,6 +3,9 @@
 <html lang="en">
 	<head>
 		<meta charset="utf-8">
+		<meta name="Stare Haikusis" content="Inadvertent haikus from judicial opinions.">
+		<meta name="keywords" content="law, haiku, scotus, court haikus, legal haikus">
+		<meta name="author" content="Joshua Auriemma">
 		<title>Stare Haikusis | {{ $line1 . '. . . .'}}</title>
 		<!-- Bootstrap -->
 		<link href="{{asset('css/custom.css')}}" rel="stylesheet">
@@ -104,6 +107,9 @@
 <?php $buttonClass = 'btn btn-default'; ?>
 @endif
 
+<link rel="shortcut icon" href="{{ asset('favicon.ico') }}" type="image/x-icon">
+<link rel="icon" href="/{{ asset('favicon.ico') }}" type="image/x-icon">
+
 	</head>
 	<body>
 	<script src="{{ asset('js/vendor/jquery.js') }}"></script>
@@ -159,6 +165,7 @@
                  <h4 class="modal-title" id="myModalLabel">Edit Skill</h4>
 
             </div>
+            @if (Auth::check())
             <form method="post" action="{{url('/', $parameters = array(), $secure = null) . '/' . $id . '/edit'}}">
                 <div class="modal-body">
 					  <div class="form-group">
@@ -198,6 +205,7 @@
                         <button type="submit" class="btn btn-primary">Save changes</button>
                     </div>
             </form>
+            @endif
             </div>
         </div>
     </div>
@@ -209,7 +217,7 @@
   @endif
   <tr>
   	<td class="shareButton">
-		<p align="left"><button type="button" class="btn btn-default btn" data-toggle="modal" data-target="#myModal">
+		<p align="left"><button type="button" class="btn btn-default btn" data-toggle="modal" data-target="#myModal2">
 		<span class="glyphicon glyphicon-info-sign"></span>
 	</button>
 	<a href="#" id="popover"><button type="button" class="btn btn-default btn" data-toggle="popover">
@@ -243,7 +251,7 @@
 </tr></table>
 
 <!-- Large hidden about modal -->
-<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+<div class="modal fade2" id="myModal2" tabindex="-2" role="dialog" aria-labelledby="myModal2Label" aria-hidden="true">
   <div class="modal-dialog">
     <div class="modal-content">
       <div class="modal-header">
@@ -328,5 +336,15 @@ function upperMe() {
 } 
 
 </script> 
+<script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+  ga('create', 'UA-53864732-1', 'auto');
+  ga('send', 'pageview');
+
+</script>
 	</body>
 </html>
