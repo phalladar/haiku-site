@@ -13,6 +13,7 @@
 		<link href="{{asset('css/bootstrap-social.css')}}" rel="stylesheet">
 		<link href="{{asset('css/font-awesome.min.css')}}" rel="stylesheet">
 		<link href='http://fonts.googleapis.com/css?family=Lato' rel='stylesheet' type='text/css'>
+		<link href='http://fonts.googleapis.com/css?family=PT+Sans:400italic' rel='stylesheet' type='text/css'>
 		
 		<style type="text/css">
 
@@ -343,6 +344,7 @@ function upperMe() {
   })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
 
   ga('create', 'UA-53864732-1', 'auto');
+  ga('require', 'displayfeatures');
   ga('send', 'pageview');
 
 </script>
