@@ -14,7 +14,7 @@
 		<link href="{{asset('css/font-awesome.min.css')}}" rel="stylesheet">
 		<link href='http://fonts.googleapis.com/css?family=Lato' rel='stylesheet' type='text/css'>
 		<link href='http://fonts.googleapis.com/css?family=PT+Sans:400italic' rel='stylesheet' type='text/css'>
-		
+
 		<style type="text/css">
 
 			div.upArrow input {
@@ -78,7 +78,7 @@
 
 			.popover {
 				max-width: none;
-			    width: 430px;
+			    width: 460px;
 			    height: 55px;    
 			}
 
