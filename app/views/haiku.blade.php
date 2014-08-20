@@ -3,10 +3,10 @@
 <html lang="en">
 	<head>
 		<meta charset="utf-8">
-		<meta name="Stare Haikusis" content="Inadvertent haikus from judicial opinions.">
+		<meta name="Haiku Decisis" content="Inadvertent haikus from judicial opinions.">
 		<meta name="keywords" content="law, haiku, scotus, court haikus, legal haikus">
 		<meta name="author" content="Joshua Auriemma">
-		<title>Stare Haikusis | {{ $line1 . '. . . .'}}</title>
+		<title>Haiku Decisis | {{ $line1 . '. . . .'}}</title>
 		<!-- Bootstrap -->
 		<link href="{{asset('css/custom.css')}}" rel="stylesheet">
 		<link href="{{asset('css/bootstrap.min.css')}}" rel="stylesheet">
@@ -109,7 +109,7 @@
 @endif
 
 <link rel="shortcut icon" href="{{ asset('favicon.ico') }}" type="image/x-icon">
-<link rel="icon" href="/{{ asset('favicon.ico') }}" type="image/x-icon">
+<link rel="icon" href="{{ asset('favicon.ico') }}" type="image/x-icon">
 
 	</head>
 	<body>
@@ -260,9 +260,11 @@
       </div>
       <div class="modal-body">
         <h3>About the Site</h3>
-        <p align="left" class="modal-body">When Stare Haikusis launched it was populated with approximately 9800 haikus programatically identified. These haikus were [presumably] inadvertently created by courts when writing their opinions.</p>
+        <p align="left" class="modal-body">When Haiku Decisis launched it was populated with just over 8000 unique haikus programatically identified. These haikus were [presumably] inadvertently created by courts when writing their opinions.</p>
         <p align="left" class="modal-body">The vast majority of the difficult code that made this site possible was written by <a href="http://mrfeinberg.com/" target="_blank">Jonathan Feinberg</a>. <a href="http://www.fastcase.com" target="_blank">Fastcase</a> also provided me with the corpus of supreme court cases since the inception of the Court (and will in the future be creating an API to allow me to generate open access links to all the opinions referenced on this site).</p>
         <p align="left" class="modal-body">Because this application was developed programatically, there will be errors. The voting process is intended to correct those errors and in the future I will create a reporting feature but for now please feel free to <a href="mailto:legalgeekery@gmail.com">reach out to me</a> for questions or comments.</p>
+
+        <p align="left" class="modal-body">For a more in-depth write-up about the impetus behind this project, take a look at <a href="http://legalgeekery.com/2014/08/20/haikus-from-scotus/">my Legal Geekery post</a>.</p>
 
         <p align="center">Hotkeys: <kbd><span class="glyphicon glyphicon-arrow-up"></span></kbd> upvote | <kbd><span class="glyphicon glyphicon-arrow-down"></span></kbd> downvote.</p><br />
         <h3>About Joshua Auriemma</h3>
