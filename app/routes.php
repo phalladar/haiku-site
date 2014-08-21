@@ -48,7 +48,7 @@ Route::get('/{id}', function($id){
 
 Route::post('/up', array('as' => 'haiku.up', function()
 {
-
+	if (Session::get(Input::get('info')) != 'no') Session::put('info', 'no');
 	if (Session::get(Input::get('id')) == 'up') {
 		return Redirect::to('/');
 	}
@@ -68,6 +68,7 @@ Route::post('/up', array('as' => 'haiku.up', function()
 
 Route::post('/down', array('as' => 'haiku.down', function()
 {
+	if (Session::get(Input::get('info')) != 'no') Session::put('info', 'no');
 	if (Session::get(Input::get('id')) == 'down') {
 		return Redirect::to('/');
 	}
@@ -108,6 +109,7 @@ Route::post('/{id}/edit', array('as' => 'haiku.edit', function()
 
 Route::post('/flag', array('as' => 'haiku.flag', function()
 {
+	if (Session::get(Input::get('info')) != 'no') Session::put('info', 'no');
 	$theFlag = Input::get('id') . "-flag";
 	if (Session::get($theFlag) == 'yes') {
 		return Redirect::to('/');

@@ -113,6 +113,12 @@
 
 	</head>
 	<body>
+  @if (Session::get("info") != 'no') 
+  <div class="alert alert-info alert-dismissible" role="alert">
+  <button type="button" class="close" data-dismiss="alert"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+  <strong>First time users:</strong> Below you’ll find a haiku extracted from a random Supreme Court opinion. These haikus were identified using a computer algorithm running on all Supreme Court cases going back to 1 U.S. 1 (provided to me courtesy of Fastcase). Vote up the haikus you like; vote down the opinions you don’t like. If you see a haiku that is clearly a bug, please use the flag feature and I will remove it. Enjoy! (This message will appear only once.)
+</div><br /><br />
+@endif
 	<script src="{{ asset('js/vendor/jquery.js') }}"></script>
 	<script src="{{ asset('js/vendor/fastclick.js') }}"></script>
 	<script src="{{ asset('js/foundation.min.js') }}"></script>
