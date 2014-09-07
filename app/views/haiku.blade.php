@@ -26,8 +26,8 @@
 				cursor:pointer;
 				text-align: center;
 				border: none;
-				width: 2vw;
-				height: 2vw;
+				width: 2.6vw;
+				height: 2.6vw;
 			}
 
 			div.upArrow:hover input {
@@ -36,8 +36,8 @@
 				cursor:pointer;
 				text-align: center;
 				border: none;
-				width: 2vw;
-				height: 2vw;
+				width: 2.6vw;
+				height: 2.6vw;
 			}
 
 			div.downArrow input {
@@ -50,8 +50,8 @@
 				cursor:pointer;
 				text-align: center;
 				border: none;
-				width: 2vw;
-				height: 2vw;
+				width: 2.6vw;
+				height: 2.6vw;
 			}
 
 			div.downArrow:hover input {
@@ -60,8 +60,8 @@
 				cursor:pointer;
 				text-align: center;
 				border: none;
-				width: 2vw;
-				height: 2vw;
+				width: 2.6vw;
+				height: 2.6vw;
 			}
 
 			.form-horizontal .form-group {

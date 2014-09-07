@@ -2,14 +2,7 @@
 
 Route::get('h-login', 'SessionsController@create');
 Route::get('logout', 'SessionsController@destroy');
-
 Route::resource('sessions', 'SessionsController');
-
-Route::get('/publiclinks', function(){
-	
-	return View::make('publiclinks');
-
-});
 
 Route::get('/', function()
 {
